@@ -21,7 +21,7 @@ namespace NestStart.Controllers
                 Categories = await _context.Categories.Where(x=>x.IsDeleted==false).ToListAsync(),
                 Products = await _context.Products
                 .Include(x=>x.Category).Include(x=>x.ProductImages)
-                .Where(x=>x.IsDeleted==false).ToListAsync(),
+                .Where(x=>x.IsDeleted==false).OrderByDescending(x => x.İd).ToListAsync(),
                 ProductImages = await _context.ProductImages.ToListAsync()
             };
             return View(vm);
